@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+def prop(data, colname, length):
+    return data[colname].value_counts()/length
 
 def get_prop():
     hotels = pd.read_csv('../data/features_hotels.csv')
@@ -10,7 +12,7 @@ def get_prop():
 
     proportions = {}
     for i in test_set.columns:
-        proportions[i] = getProps(i)
+        proportions[i] = prop(test_set, i, N)
     return proportions
 
 
