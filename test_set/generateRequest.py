@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def get_prop()
+def get_prop():
     hotels = pd.read_csv('../data/features_hotels.csv')
     test_set = pd.read_csv('../data/test_set.csv')
     test_set = test_set.merge(hotels, on=['hotel_id','city'])
