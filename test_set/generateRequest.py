@@ -18,7 +18,7 @@ def get_prop():
 
 def generate(proportions = get_prop(), eps = .9):
     list_city = ['amsterdam', 'copenhagen', 'madrid', 'paris', 'rome', 'sofia', 'valletta', 'vienna' ,'vilnius']
-    list_lang = ['austrian', 'bulgarian', 'chypriot', 'croatian', 'czech', 'danish', 'dutch', 'estonian', 'finnish', 'french', 'german', 'greek', 'hungarian', 'irish', 'italian', 'latvian', 'lithuanian', 'luxembourgish', 'maltese', 'polish', 'portuguese', 'romanian', 'slovakian', 'slovene', 'spanish','swedish']
+    list_lang = ['austrian', 'bulgarian', 'cypriot', 'croatian', 'czech', 'danish', 'dutch', 'estonian', 'finnish', 'french', 'german', 'greek', 'hungarian', 'irish', 'italian', 'latvian', 'lithuanian', 'luxembourgish', 'maltese', 'polish', 'portuguese', 'romanian', 'slovakian', 'slovene', 'spanish','swedish']
     if np.random.uniform() <= eps :
         date = np.random.choice(proportions['date'].index.to_numpy(), 1, p = proportions['date'].to_numpy())[0]
         city = np.random.choice(proportions['city'].index.to_numpy(), 1, p = proportions['city'].to_numpy())[0]
