@@ -39,7 +39,7 @@ oldRe = open("oldRequest.csv","a")
 #f.write("City\tDate\tLanguage\tMobile\tAvatar_id\tHotel_id\tPrice\tStock\n") # Only the first time
 
 iteration = 0
-for i in range(220,600):
+for i in range(292,600):
     name = str(i)+'_avatar'
     r = requests.post(path(f'avatars/{user_id}/{name}'))
     while True:
