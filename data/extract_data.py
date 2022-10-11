@@ -56,11 +56,11 @@ for i in range(292,600):
     #r1.json()
     print(r1.json())
     requ = r1.json()["request"]
-    avatar = requ["city"]+'\t'+str(requ["date"])+'\t'+requ["language"]+'\t'+str(requ["mobile"])+'\t'+'1\t'+str(requ["avatar_id"])+'\t'
+    avatar = requ["city"]+','+str(requ["date"])+','+requ["language"]+','+str(requ["mobile"])+','+'1,'+str(requ["avatar_id"])+','
     data = ''
     for ligne in r1.json()["prices"]:
         data += avatar
-        data += str(ligne["hotel_id"]) + '\t' + str(ligne["price"]) + '\t'+ str(ligne["stock"]) + '\n'
+        data += str(ligne["hotel_id"]) + ',' + str(ligne["price"]) + ','+ str(ligne["stock"]) + '\n'
     f.write(data)
     oldRe.write(c + ',' + str(d) + ',' + l + ',' + str(m) + ',' + str(requ["avatar_id"]) + ',1' + '\n')
     oldRequest.append([c,str(d),l,str(m)])
