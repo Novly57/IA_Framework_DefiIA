@@ -1,4 +1,4 @@
-city,date,langage,mobile,request_number,avatar_id,hotel_id,price,stock
+city,date,language,mobile,request_number,avatar_id,hotel_id,price,stock
 valletta,2,bulgarian,1,1,134,55,109,10
 valletta,2,bulgarian,1,1,134,81,71,0
 valletta,2,bulgarian,1,1,134,106,133,0
