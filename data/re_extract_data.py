@@ -12,7 +12,7 @@ import generateRequest as gen
 oldRe = open("oldRequest.csv","r")
 lignes = oldRe.readlines()
 oldRequest = []
-for ligne in lignes:
+for ligne in lignes[1:]:
     ligne = ligne.rstrip("\n").split(",")
     oldRequest.append(ligne[:])
 oldRe.close()
@@ -23,14 +23,21 @@ host = f"http://{domain}:{port}"
 path = lambda x: urllib.parse.urljoin(host, x)
 user_id = '5bafe3fc-6b26-46e0-af72-ee3709ed12d6'
 
-#f = open("data.csv","a")
-#oldRe = open("oldRequest.csv","a")
+f = open("data.csv","a")
+oldRe = open("oldRequest.csv","a")
 
-for i in range(1):
+for i in range(100):
     while True:  
-        avatar = rd.choice(oldRequest[1:])
-        if avatar[1] > 0:
+        avatar = rd.choice(oldRequest)
+        if int(avatar[2]) > 0:
             break
+    print(avatar)
+    name,c,d,l,m,avatarId,RqNum = avatar#[:-1]
+    while True:
+    	newD = rd.randint(-44,-1)
+    	if 0<=int(d)+newD<44:
+    	    d = str(int(d)+newD)
+    	    break    
     params = {
     "avatar_name": name,
     "language": l,
@@ -41,14 +48,14 @@ for i in range(1):
     #r1.json()
     print(r1.json())
     requ = r1.json()["request"]
-    avatar = requ["city"]+','+str(requ["date"])+','+requ["language"]+','+str(requ["mobile"])+','+'1,'+str(requ["avatar_id"])+','
+    avatar = requ["city"]+','+str(requ["date"])+','+requ["language"]+','+str(requ["mobile"])+','+str(int(RqNum)+1)+','+str(requ["avatar_id"])+','
     data = ''
     for ligne in r1.json()["prices"]:
         data += avatar
         data += str(ligne["hotel_id"]) + ',' + str(ligne["price"]) + ','+ str(ligne["stock"]) + '\n'
     f.write(data)
-    oldRe.write(c + ',' + str(d) + ',' + l + ',' + str(m) + ',' + str(requ["avatar_id"]) + ',1' + '\n')
-    oldRequest.append([c,str(d),l,str(m)])
+    oldRe.write(name+','+c + ',' + str(d) + ',' + l + ',' + str(m) + ',' + str(requ["avatar_id"]) + ','+str(int(RqNum)+1) + '\n')
+    oldRequest.append([name,c,str(d),l,str(m),avatarId,str(int(RqNum)+1)])
     print(avatar)
 
 """
