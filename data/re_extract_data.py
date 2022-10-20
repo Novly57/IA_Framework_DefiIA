@@ -25,12 +25,20 @@ user_id = '5bafe3fc-6b26-46e0-af72-ee3709ed12d6'
 
 f = open("data.csv","a")
 oldRe = open("oldRequest.csv","a")
-
-for i in range(100):
+iteration = 0
+    
+    
+def Re_Extract():
     while True:  
         avatar = rd.choice(oldRequest)
         if int(avatar[2]) > 0:
-            break
+            sortie = True
+            for av in oldRequest:
+                if av[0] == avatar[0] and int(avatar[2])>int(av[2]):
+                    sortie =False
+                    break
+            if sortie :
+                break
     print(avatar)
     name,c,d,l,m,avatarId,RqNum = avatar#[:-1]
     while True:
@@ -58,9 +66,7 @@ for i in range(100):
     oldRequest.append([name,c,str(d),l,str(m),avatarId,str(int(RqNum)+1)])
     print(avatar)
 
-"""
-iteration = 0
-for i in range(600,1000):
+def NewEntry():
     name = str(i)+'_avatar'
     r = requests.post(path(f'avatars/{user_id}/{name}'))
     while True:
@@ -85,11 +91,23 @@ for i in range(600,1000):
     f.write(data)
     oldRe.write(c + ',' + str(d) + ',' + l + ',' + str(m) + ',' + str(requ["avatar_id"]) + ',1' + '\n')
     oldRequest.append([c,str(d),l,str(m)])
+
+
+for i in range(400):
+    Re_Extract()
+    """
+    if random.uniform(0,1)<0.5:
+    	Re_Extract()
+    else:
+    	NewEntry()""" # attention OldRequest n'a pas le même format pour les deux méthodes
+
     
 f.close()
 oldRe.close()
 
-"""
+
+
+
 """
 r = requests.get(path(f"avatars/{user_id}"))
 for avatar in r.json():
