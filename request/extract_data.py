@@ -5,7 +5,7 @@ import requests
 import sys
 
 # import functions from generateRequest.py
-sys.path.insert(1, '../test_set')
+# sys.path.insert(1, '../test_set')
 import generateRequest as gen
 
 """
