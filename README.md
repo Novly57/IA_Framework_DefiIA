@@ -5,7 +5,7 @@ Link to the kaggle:
 https://www.kaggle.com/competitions/defi-ia-2023/overview/description
 
 
-\section(Notre Projet)
+## Notre Projet
 
 ### Introduction
 
@@ -32,11 +32,11 @@ Nous avons essayé de trouver des informations qui pourraient être intéressant
 
 Nous avons utilisé des modèles prédictifs classiques tels que XGboost, LightGBM, GradientBoosting, RandomForest. Nous avons ensuite créé des ensembles de modèles en faisant la moyenne entre les différentes prédictions de nos meilleurs algorithmes.
 
-\section(Packages)
+## Packages
 
 Tous les packages utiles pour le projet sont dans le fichier : requirements.txt
 
-\section(Gradio)
+## Gradio
 
 Vous pouvez utiliser une interface gradio pour essayer de faire des requêtes pour chercher un hotel. Sur la gauche, vous pouvez modifier les différents paramètres, vous observez ensuite le résultat de votre recherche dans le panneau de droite. Vous pouvez cliquer sur les boutons en bas pour essayer différents exemples.
 
