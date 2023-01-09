@@ -25,7 +25,7 @@ Pour tester notre statégie nous avons mis en place une méthode adversariale, c
 Nous avons essayé de trouver des informations qui pourraient être intéressantes pour la prédiction. Nous avons tout d'abord géré les variables qualitatives grâce à l'aide de 2 méthodes : le one hot encoding et le target encoding. Pour le target encoding nous avons considéré plusieurs fonctions pour encoder les données. Nous avons arrété notre choix à 3 fonctions : $mean$, $var$ et additive_smoothing. Cette dernière étant définie par $N\frac{x_i + \alpha}{N + d \alpha}$ avec $d = max(x) - min(x)$ et $\alpha$ le paramètre de smoothing.
 
 
-**Etude de l'importance de la langue : ** 
+Etude de l'importance de la langue :  
 Lorsque l'on considère la langue comme une variable qualitative on observe qu'elle n'est pas très utile et qu'elle n'influe pas énormément sur le modèle. Nous avons en revanche remarqué que la langue influait de manière certaine mais sous une condition particulière. En effet, en moyenne un utilisateur qui fait une requête dans le pays de sa langue (un français en France par exemple) paie 2\% moins cher qu'un autre utilisateur. Le problème est que c'est une moyenne et nous ne pouvons pas simplement diminuer le prix des hôtels de 2\% après la prédiction. Nous avons donc créé un dictionnaire qui lie les langues au pays correspondant, ainsi nous avons pu créer une variable binaire valant 1 lorsque l'utilisateur demande un hôtel dans le pays de sa langue.
 
 
