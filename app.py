@@ -24,7 +24,8 @@ def predict_price(order_requests, city, date, language, mobile, hotel_id):
     else :
         stock_info.set_index('date', inplace=True)
         stock_info['stock'] = stock_info['stock'].interpolate()
-        stock = int(stock_info.iloc[date]['stock'])
+        stock_info = stock_info.reset_index()
+        stock = int(stock_info.loc[stock_info['date']==date]['stock'])
 
         hotels['hotel_id'].loc[hotels['city']==city]
         city_encoding = list(target_enco.loc[target_enco['name'] == 'city_'+city].iloc[0])[:-1]
