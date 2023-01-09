@@ -13,14 +13,17 @@ file_name = 'model_from_train'      # name (model file)
 
 
 # boosting parameters
-learning_rate = .01             # best = .01                         
+n_estimators = 700               # best = 1500
 max_depth = 4                   # best = 4 
-n_estimators = 10               # best = 1500
-validation_fraction = .1        # best = .1 
+
+min_samples_split = 6
+
+learning_rate = .1             # best = .01 
+subsample = 1.                  # best = .2
+max_features = None              # best = 1.0
+alpha = .8
 criterion = 'friedman_mse'      # best = 'friedman_mse'
-subsample = .2                  # best = .2
-max_leaf_nodes = 50             # best = 50
-max_features = 1.0              # best = 1.0
+validation_fraction = .2        # best = .1 
 verbose = 1                     # best = 1
 
 ################################################################################
@@ -104,14 +107,15 @@ Y_test = None
 
 ### boosting
 GBR = GradientBoostingRegressor()
-GBR.set_params(learning_rate = learning_rate, 
+GBR.set_params(n_estimators = n_estimators,
                 max_depth = max_depth,
-                n_estimators = n_estimators,
-                validation_fraction = validation_fraction,
-                criterion = criterion,
+                min_samples_split = min_samples_split,
+                learning_rate = learning_rate,
                 subsample = subsample,
-                max_leaf_nodes = max_leaf_nodes,
                 max_features = max_features,
+                alpha = alpha,
+                criterion = criterion,
+                validation_fraction = validation_fraction,
                 verbose = verbose)
 
 fit = GBR.fit(X_train,Y_train)
