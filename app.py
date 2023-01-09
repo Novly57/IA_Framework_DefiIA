@@ -66,4 +66,4 @@ app = gr.Interface(
                [2,'valletta',10,'bulgarian',False,55],
                [3,'madrid',26,'danish',True,860]],
     live = True)
-app.launch()
+app.launch(share=True)

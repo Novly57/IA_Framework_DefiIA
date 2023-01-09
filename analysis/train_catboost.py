@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np 
-from catboost import CatBoostClassifier
+from catboost import CatBoostRegressor
+from sklearn.model_selection import GridSearchCV
 import pickle
 
 ############################## PARAMETERS TO FILL ##############################
@@ -13,7 +14,7 @@ file_name = 'model_catboost'        # name (model file)
 
 
 # boosting parameters
-iterations = 100
+iterations = 1000
 learning_rate = .02
 depth = 4
 ################################################################################
@@ -95,11 +96,37 @@ X_test = df_test
 Y_train = y
 Y_test = None
 
-### boosting
-cat = CatBoostClassifier(iterations = iterations, learning_rate = learning_rate, depth = depth)
 
-fit = cat.fit(X_train,Y_train)
-y_pred = fit.predict(X_test)
+
+### boosting
+
+
+
+
+# Définissez les valeurs à essayer pour chaque hyperparamètre
+
+best_param = {  'boosting_type': ['Plain'], # ok
+                'border_count': [64], # ok
+                'depth': [7], # ok
+                'iterations': [150], # ok
+                'l2_leaf_reg': [5], # ok
+                'learning_rate': [0.1], # ok
+                'sampling_frequency': ['PerTree'], # ok
+                'subsample': [0.8] # ok
+}
+
+# Créez un objet de grille de recherche
+catboost = CatBoostRegressor()
+grid_search = GridSearchCV(estimator=catboost, param_grid=best_param, cv=3)
+
+# Entraînez le modèle
+grid_search.fit(X_train, Y_train)
+
+# Affichez les meilleurs hyperparamètres
+print(grid_search.best_params_)
+
+# Prédisez les valeurs cibles pour les données de test
+y_pred = grid_search.predict(X_test)
 
 ### save
 
@@ -108,8 +135,8 @@ if _round : y_pred = np.round(y_pred)
 sub = pd.DataFrame(y_pred)
 sub.to_csv(path + 'submit/' + name + '.csv',index=True, header=['price'], index_label = 'index')
 
-pickle.dump(fit, open(file_name,'wb'))
-model_loaded = pickle.load(open(file_name,'rb'))
+pickle.dump(grid_search, open(file_name,'wb'))
+
 
 
 
