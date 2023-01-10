@@ -3,13 +3,14 @@ import numpy as np
 from catboost import CatBoostRegressor
 from sklearn.model_selection import GridSearchCV
 import pickle
+import os
 
 ############################## PARAMETERS TO FILL ##############################
-path = '../data/'                   # chemin vers le dossier contenant les données
-lang_cit = True                     # pour utiliser la variablle ville == langue
-_round = False                      # pour arrondir les prédictions
-name = 'catboost'                   # name (csv file)
-file_name = 'model_catboost'        # name (model file)
+path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data/')    # chemin vers le dossier contenant les données
+lang_cit = True                                                                             # pour utiliser la variablle ville == langue
+_round = False                                                                              # pour arrondir les prédictions
+name = 'catboost'                                                                           # name (csv file)
+file_name = 'model_catboost'                                                                # name (model file)
 
 
 

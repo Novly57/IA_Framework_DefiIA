@@ -3,9 +3,10 @@ import gradio as gr
 import numpy as np
 import pickle
 import warnings
+import os
 warnings.filterwarnings("ignore")
 
-path = './data/' 
+path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data/')
 file_name = 'gradio_model'
 # pickle.dump(gbmOpt, open(file_name,'wb')) avec gbmOpt = gbm.fit(...)
 model_loaded = pickle.load(open(path+file_name,'rb'))

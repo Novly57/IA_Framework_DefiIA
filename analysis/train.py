@@ -2,13 +2,14 @@ import pandas as pd
 import numpy as np 
 from sklearn.ensemble import GradientBoostingRegressor
 import pickle
+import os
 
 ############################## PARAMETERS TO FILL ##############################
-path = '../data/'                   # chemin vers le dossier contenant les données
-lang_cit = True                     # pour utiliser la variablle ville == langue
-_round = False                      # pour arrondir les prédictions
-name = 'submit_from_train'          # name (csv file)
-file_name = 'model_from_train'      # name (model file)
+path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data/')    # chemin vers le dossier contenant les données
+lang_cit = True                                                                             # pour utiliser la variablle ville == langue
+_round = False                                                                              # pour arrondir les prédictions
+name = 'submit_from_train'                                                                  # name (csv file)
+file_name = 'model_from_train'                                                              # name (model file)
 
 
 
@@ -29,7 +30,7 @@ verbose = 1                     # best = 1
 ################################################################################
 
 ### LOADING DATA
-hotels = pd.read_csv(path + '/features_hotels.csv')
+hotels = pd.read_csv(path + 'features_hotels.csv')
 data = pd.read_csv(path + 'data.csv')
 data_test = pd.read_csv(path + 'test_set.csv')
 
