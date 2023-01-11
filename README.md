@@ -13,7 +13,7 @@ docker run -it --name [my_container_name] [my_image_name]
 ```
 
 Pour lancer l'application gradio, faites la commande ```python app.py```. Un lien va s'afficher pour pouvoir ouvrir le gradio dans votre navigateur.
-Pour entraîner le modèle de XGBoost, lancez ```python analysis/train.py```. Pour le modèle CatBoost lancez ```python analysis/train_catboost.py```.
+Pour entraîner le modèle de Gradient Boosting, lancez ```python analysis/train.py```. Pour le modèle CatBoost lancez ```python analysis/train_catboost.py```.
 
 Les 2 fichiers train enregistrent les prédictions dans ```data/submit/submit_from_train.csv``` pour XGBoost et ```data/submit/catboost.csv```. Les poids des modèles sont enregistrés dans ```model_from_train```et ```model_catboost``` dans le répertoire courant 
 
