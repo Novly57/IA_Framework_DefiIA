@@ -3,6 +3,19 @@
 
 Link to the kaggle:
 https://www.kaggle.com/competitions/defi-ia-2023/overview/description
+## Commandes Docker
+
+Vous pouvez directement créer une image Docker contenant tous les fichiers et requirements nécessaires pour lancer l'application gradio ou entrainer nos modèles. Après avoir cloné le repository sur votre machine, construisez une image puis un container en effectuant les commandes suivantes :
+
+```
+docker build -t [my_image_name] .
+docker run -it --name [my_container_name] [my_image_name]
+```
+
+Pour lancer l'application gradio, faites la commande ```python app.py```. Un lien va s'afficher pour pouvoir ouvrir le gradio dans votre navigateur.
+Pour entraîner le modèle de XGBoost, lancez ```python analysis/train.py```. Pour le modèle CatBoost lancez ```python analysis/train_catboost.py```.
+
+Les 2 fichiers train enregistrent les prédictions dans ```data/submit/submit_from_train.csv``` pour XGBoost et ```data/submit/catboost.csv```. Les poids des modèles sont enregistrés dans ```model_from_train```et ```model_catboost``` dans le répertoire courant 
 
 
 ## Notre Projet
@@ -40,4 +53,3 @@ Tous les packages utiles pour le projet sont dans le fichier : requirements.txt
 ## Gradio
 
 Vous pouvez utiliser une interface gradio pour essayer de faire des requêtes pour chercher un hotel. Sur la gauche, vous pouvez modifier les différents paramètres, vous observez ensuite le résultat de votre recherche dans le panneau de droite. Vous pouvez cliquer sur les boutons en bas pour essayer différents exemples.
-
