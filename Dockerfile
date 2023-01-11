@@ -13,8 +13,11 @@ COPY ./analysis/train_catboost.py /MAZeltov/analysis/
 COPY ./requirements.txt /MAZeltov/
 
 
+
 # change working directory to the repository
 WORKDIR /MAZeltov/
+
+RUN mkdir data/submit
 
 # install all requirements
 RUN pip install -r requirements.txt
