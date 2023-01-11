@@ -1,14 +1,14 @@
-def train_test_dataset(hotels, data, data_test):
+import pandas as pd
+import numpy as np
+
+def train_test_dataset(hotels, data, data_test, lang_cit):
     ### DROP DUPLICATES & DATA WITH PROBLEMS
     to_exclude = data[['city', 'language','mobile','request_number','date']].drop_duplicates()
     # to_exclude.to_csv('to_exclude.csv', index = False)
-    print('---------\nNombre de requêtes uniques :', to_exclude.shape[0])
 
     tot = 0 
     for i in range(7):
         tot += np.unique(data.loc[data.request_number == i].avatar_id.values).shape[0]
-    print('---------\nEstimation du nombre total de requêtes :', tot)
-    print('---------')
 
     to_drop = [134]
     data = data.loc[~data.avatar_id.isin(to_drop)]
@@ -71,4 +71,4 @@ def train_test_dataset(hotels, data, data_test):
     Y_train = y
     Y_test = None
 
-return X_train, X_test, Y_train, Y_test
+    return X_train, X_test, Y_train, Y_test
