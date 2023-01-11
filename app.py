@@ -6,7 +6,7 @@ import warnings
 import os
 warnings.filterwarnings("ignore")
 
-path = os.path.join(os.path.dirname(os.path.abspath(__file__)),'data/')
+path  = os.path.join(os.path.dirname(os.path.abspath(__file__)),'data/')
 file_name = 'gradio_model'
 # pickle.dump(gbmOpt, open(file_name,'wb')) avec gbmOpt = gbm.fit(...)
 model_loaded = pickle.load(open(path+file_name,'rb'))
@@ -23,17 +23,19 @@ def predict_price(order_requests, city, date, language, mobile, hotel_id):
     if hotel_id not in np.unique(city_info.loc[city_info['city'] == city]['hotel_id']):
         return 'Please select a correct hotel_id in the list below', list(np.unique(city_info.loc[city_info['city'] == city]['hotel_id'])),''
     else :
-        stock_info.set_index('date', inplace=True)
-        stock_info['stock'] = stock_info['stock'].interpolate()
-        stock_info = stock_info.reset_index()
+      
+        stock_info.sort_values('date')
+        stock_info = stock_info.drop('hotel_id', axis = 1).set_index('date')
+        stock_info = stock_info.reindex(list(range(stock_info.index.min(),stock_info.index.max()+1)),fill_value=np.nan)
+        stock_info['stock'] = stock_info['stock'].interpolate().astype(int)  
+        stock_info = stock_info.reset_index()        
         stock = int(stock_info.loc[stock_info['date']==date]['stock'])
-
+        
         hotels['hotel_id'].loc[hotels['city']==city]
         city_encoding = list(target_enco.loc[target_enco['name'] == 'city_'+city].iloc[0])[:-1]
         language_encoding = list(target_enco.loc[target_enco['name'] == 'language_'+language].iloc[0])[:-1]
         mobile_encoding = list(target_enco.loc[target_enco['name'] == 'mobile_'+str(int(mobile))].iloc[0])[:-1]
         hotel_encoding = list(target_enco.loc[target_enco['name'] == 'hotel_id_'+str(hotel_id)].iloc[0])[:-1]
-
 
         X_test = pd.DataFrame([[order_requests,stock,date]+city_encoding+language_encoding+mobile_encoding+hotel_encoding])
         y_pred = model_loaded.predict(X_test)
